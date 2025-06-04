@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name – Portfolio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a class="logo" href="#home">Your Name</a>
+      <ul class="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / HOME SECTION -->
+  <section id="home" class="hero">
+    <div class="overlay"></div>
+    <div class="container hero-container">
+      <h1 class="hero-title">Hello, I’m Your Name</h1>
+      <p class="hero-subtitle">Data Science Graduate | Aspiring Data Engineer</p>
+      <a class="btn" href="#projects">View Projects</a>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-text">
+        I’m a recent data science graduate specializing in Python, SQL, and cloud‐based data solutions.
+        I build end‐to‐end analytics pipelines and love turning raw data into actionable insights.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="skills" class="skills section">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="skill-grid">
+        <div class="skill-item fade-in">
+          <img src="assets/python-icon.png" alt="Python" />
+          <h3>Python</h3>
+          <p>90%</p>
+        </div>
+        <div class="skill-item fade-in" style="animation-delay: 0.2s;">
+          <img src="assets/sql-icon.png" alt="SQL" />
+          <h3>SQL</h3>
+          <p>85%</p>
+        </div>
+        <div class="skill-item fade-in" style="animation-delay: 0.4s;">
+          <img src="assets/azure-icon.png" alt="Azure" />
+          <h3>Azure</h3>
+          <p>75%</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects" class="projects section">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="project-grid">
+        <div class="project-item fade-in">
+          <img src="assets/project1-thumbnail.jpg" alt="Project 1 Thumbnail" />
+          <div class="project-info">
+            <h3>Project One: ETL Pipeline</h3>
+            <p>
+              Built a PySpark ETL pipeline on Azure Databricks to ingest 1M+ records from blob storage into Azure SQL Data Warehouse.
+            </p>
+            <a href="#" class="btn-small">View Code</a>
+          </div>
+        </div>
+        <div class="project-item fade-in" style="animation-delay: 0.2s;">
+          <img src="assets/project2-thumbnail.jpg" alt="Project 2 Thumbnail" />
+          <div class="project-info">
+            <h3>Project Two: Real-time Dashboard</h3>
+            <p>
+              Developed a real-time Power BI dashboard on Azure Synapse that visualizes streaming IoT sensor data using Azure Functions.
+            </p>
+            <a href="#" class="btn-small">View Code</a>
+          </div>
+        </div>
+        <div class="project-item fade-in" style="animation-delay: 0.4s;">
+          <img src="assets/project3-thumbnail.jpg" alt="Project 3 Thumbnail" />
+          <div class="project-info">
+            <h3>Project Three: Data Warehouse Design</h3>
+            <p>
+              Designed a star-schema data warehouse on Azure SQL Data Warehouse with ETL routines orchestrated by Azure Data Factory.
+            </p>
+            <a href="#" class="btn-small">View Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact section">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/your-profile" target="_blank">your-profile</a></p>
+      <p>GitHub: <a href="https://github.com/your-username" target="_blank">your-username</a></p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Your Name. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for burger menu toggle -->
+  <script>
+    const burger = document.querySelector('.burger');
+    const menu = document.querySelector('.menu');
+    burger.addEventListener('click', () => {
+      menu.classList.toggle('menu-active');
+      burger.classList.toggle('toggle');
+    });
+  </script>
+
+</body>
+</html>
