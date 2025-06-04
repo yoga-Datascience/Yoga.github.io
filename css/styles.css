@@ -1,0 +1,268 @@
+/* Global & Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: rgba(51, 51, 51, 0.9);
+  z-index: 100;
+}
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.logo {
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.menu li a:hover {
+  color: #0078d4;
+}
+
+/* Burger for mobile */
+.burger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+.burger div {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.menu-active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: rgba(51,51,51,0.95);
+  padding: 1rem;
+  border-radius: 5px;
+}
+.toggle div:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle div:nth-child(2) {
+  opacity: 0;
+}
+.toggle div:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #0078d4, #00bfff);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 60px;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Optional overlay: semi-transparent */
+}
+.hero-container {
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  z-index: 1;
+}
+.hero-title {
+  font-size: 3rem;
+  animation: fadeInDown 1s ease-out;
+}
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin: 1rem 0 2rem;
+  animation: fadeInUp 1s ease-out;
+}
+.btn {
+  background: #fff;
+  color: #0078d4;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  animation: fadeIn 1s ease-out;
+}
+.btn:hover {
+  background: #e6e6e6;
+}
+
+/* SECTIONS */
+.section {
+  padding: 4rem 0;
+}
+.section-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.section-text {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* SKILLS */
+.skills {
+  background: #f9f9f9;
+}
+.skill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+.skill-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  width: 120px;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+.skill-item img {
+  width: 50px;
+  margin-bottom: 0.5rem;
+}
+.skill-item h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.skill-item p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* PROJECTS */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 2rem;
+}
+.project-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+.project-item img {
+  width: 100%;
+  height: auto;
+}
+.project-info {
+  padding: 1rem;
+}
+.project-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.project-info p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+.btn-small {
+  background: #0078d4;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.btn-small:hover {
+  background: #005fa3;
+}
+
+/* CONTACT */
+.contact {
+  background: #f4f4f4;
+}
+.contact a {
+  color: #0078d4;
+  text-decoration: none;
+}
+.contact a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+.footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+}
