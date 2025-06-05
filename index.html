@@ -14,9 +14,11 @@
       box-sizing: border-box;
     }
     :root {
+      --nav-height: 70px;               /* Height of the fixed navbar */
       --bg-primary: #0a0a0a;
       --bg-secondary: #161616;
       --bg-accent: #1a1a1a;
+      --bg-about:   #1a1a1a;             /* Slightly lighter-dark for About */
       --text-primary: #ffffff;
       --text-secondary: #b3b3b3;
       --accent-color: #00d9ff;
@@ -35,8 +37,15 @@
       color: var(--text-primary);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-top: 70px; /* offset for fixed nav */
+      padding-top: var(--nav-height);    /* Reserve space for fixed navbar */
     }
+
+    /* Make every <section> aware of the navbar height, so anchor links scroll right below it */
+    section {
+      scroll-margin-top: calc(var(--nav-height) + 20px);
+      /* +20px gives a little breathing room below the navbar; adjust if needed */
+    }
+
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
@@ -56,6 +65,7 @@
       position: fixed;
       top: 0;
       width: 100%;
+      height: var(--nav-height);
       background: rgba(10, 10, 10, 0.95);
       backdrop-filter: blur(10px);
       z-index: 1000;
@@ -72,6 +82,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      height: 100%;
     }
     .logo {
       font-size: 1.5rem;
@@ -91,6 +102,7 @@
       text-decoration: none;
       transition: color 0.3s ease;
       position: relative;
+      line-height: 1; /* Prevent tiny vertical shift */
     }
     .nav-links a:hover {
       color: var(--accent-color);
@@ -126,7 +138,9 @@
        Hero Section
        ============================ */
     .hero {
-      min-height: 100vh;
+      /* Occupy viewport minus navbar height */
+      height: calc(100vh - var(--nav-height));
+      padding-top: var(--nav-height);  /* Push content below navbar */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -142,7 +156,7 @@
     .hero h1 {
       font-size: 4rem;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -202,14 +216,10 @@
       animation: twinkle 3s infinite;
     }
     @keyframes twinkle {
-      0%,
-      100% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
     }
+
     /* ============================
        Section Titles & Animations
        ============================ */
@@ -239,14 +249,8 @@
       border-radius: 2px;
     }
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
     .fade-in {
       opacity: 0;
@@ -259,19 +263,17 @@
     }
 
     /* ============================
-       About Section
+       About Section (fix overlap)
        ============================ */
     #about {
-      background: var(--bg-secondary);
+      background: var(--bg-about);
+      padding-top: 100px; /* Extra space so About starts below Hero/nav */
     }
     .about-content {
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 3rem;
       align-items: center;
-    }
-    .about-image {
-      position: relative;
     }
     .about-image img {
       width: 100%;
@@ -606,7 +608,7 @@
       .nav-links {
         position: fixed;
         right: -100%;
-        top: 70px;
+        top: var(--nav-height);
         flex-direction: column;
         background: var(--bg-secondary);
         width: 100%;
@@ -691,11 +693,11 @@
         <div class="about-text">
           <p>
             I’m an Aspiring Data Scientist with a Master of Science in Data
-            Science (2023) and over 4 years of professional experience. I’ve
-            driven over \$4 million in business impact at Amazon and excel at
-            turning raw data into actionable insights. My core strengths
-            include advanced SQL, Python‐based analytics, and interactive
-            visualizations with Tableau and Power BI.
+            Science (2023) and over 4 years of professional experience. I’ve driven
+            over \$4 million in business impact at Amazon and excel at turning raw
+            data into actionable insights. My core strengths include advanced SQL,
+            Python‐based analytics, and interactive visualizations with Tableau
+            and Power BI.
           </p>
           <p>
             At Amazon, I analyzed 120,000 orders per quarter using SQL to find
@@ -705,11 +707,10 @@
             Slack alerts, cutting response time from 2 hours to 5 minutes.
           </p>
           <p>
-            Previously at DGS Technical Services, I built Excel‐VBA financial
-            models that cut monthly reporting cycles by 50% and designed Power BI
-            dashboards that saved 10+ hours weekly. I maintained 100% data accuracy
-            through automated reconciliation scripts, supporting key business
-            stakeholders.
+            Previously at DGS Technical Services, I built Excel‐VBA financial models
+            that cut monthly reporting cycles by 50% and designed Power BI dashboards
+            that saved 10+ hours weekly. I maintained 100% data accuracy through
+            automated reconciliation scripts, supporting key business stakeholders.
           </p>
         </div>
       </div>
@@ -1084,7 +1085,6 @@
         }
       });
     }, observerOptions);
-
     document.querySelectorAll(".fade-in").forEach((el) => {
       observer.observe(el);
     });
@@ -1095,9 +1095,12 @@
         e.preventDefault();
         const target = document.querySelector(this.getAttribute("href"));
         if (target) {
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
+          // Manually scroll so that fixed navbar does not cover the heading
+          const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) + 20;
+          const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: elementPosition - offset,
+            behavior: "smooth"
           });
         }
       });
